@@ -1,0 +1,157 @@
+public abstract class Animal {
+
+    protected String sonido;
+    protected String alimentos;
+    protected String habitat;
+    protected String nombreCientifico;
+
+    public abstract String getNombreCientifico();
+
+    public abstract String getSonido();
+
+    public abstract String getAlimentos();
+
+    public abstract String getHabitat();
+}
+
+public abstract class Canido extends Animal {
+}
+
+public abstract class Felino extends Animal {
+}
+
+
+public class Gato extends Felino {
+
+    @Override
+    public String getSonido() {
+        return "Maullido";
+    }
+
+    @Override
+    public String getAlimentos() {
+        return "Ratones";
+    }
+
+    @Override
+    public String getHabitat() {
+        return "Doméstico";
+    }
+
+    @Override
+    public String getNombreCientifico() {
+        return "Felis silvestris catus";
+    }
+}
+
+
+public class Leon extends Felino {
+
+    @Override
+    public String getSonido() {
+        return "Rugido";
+    }
+
+    @Override
+    public String getAlimentos() {
+        return "Carnívoro";
+    }
+
+    @Override
+    public String getHabitat() {
+        return "Praderas";
+    }
+
+    @Override
+    public String getNombreCientifico() {
+        return "Panthera leo";
+    }
+}
+
+public class Lobo extends Canido {
+
+    @Override
+    public String getSonido() {
+        return "Aullido";
+    }
+
+    @Override
+    public String getAlimentos() {
+        return "Carnívoro";
+    }
+
+    @Override
+    public String getHabitat() {
+        return "Bosque";
+    }
+
+    @Override
+    public String getNombreCientifico() {
+        return "Canis lupus";
+    }
+}
+
+public class Perro extends Canido {
+
+    @Override
+    public String getSonido() {
+        return "Ladrido";
+    }
+
+    @Override
+    public String getAlimentos() {
+        return "Carnívoro";
+    }
+
+    @Override
+    public String getHabitat() {
+        return "Doméstico";
+    }
+
+    @Override
+    public String getNombreCientifico() {
+        return "Canis lupus familiaris";
+    }
+}
+
+import java.util.Scanner;
+
+public class Prueba {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("¿Cuántos animales desea registrar? ");
+        int cantidad = Integer.parseInt(sc.nextLine());
+        Animal[] animales = new Animal[cantidad];
+
+        for (int i = 0; i < cantidad; i++) {
+            System.out.println("Animal " + (i + 1) + ": 1) Perro 2) Lobo 3) León 4) Gato");
+            int opcion = Integer.parseInt(sc.nextLine());
+            switch (opcion) {
+                case 1:
+                    animales[i] = new Perro();
+                    break;
+                case 2:
+                    animales[i] = new Lobo();
+                    break;
+                case 3:
+                    animales[i] = new Leon();
+                    break;
+                default:
+                    animales[i] = new Gato();
+                    break;
+            }
+        }
+
+        for (int i = 0; i < animales.length; i++) {
+            System.out.println(animales[i].getNombreCientifico());
+            System.out.println("Sonido: " + animales[i].getSonido());
+            System.out.println("Alimentos: " + animales[i].getAlimentos());
+            System.out.println("Hábitat: " + animales[i].getHabitat());
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
